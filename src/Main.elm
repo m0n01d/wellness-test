@@ -203,14 +203,22 @@ viewAddTodoForm columnStatus ( selectedStatus, form ) =
 
 viewColumn : Status -> List Id -> Todos -> Html Msg
 viewColumn title column todos =
-    column
-        |> List.map
-            (\id ->
-                ( idToString id, Html.viewMaybe (viewTodo title) (Dict.get (idToString id) todos) )
-            )
-        |> Keyed.node "div"
-            [ Attributes.class "py-4"
+    if List.isEmpty column then
+        Html.p
+            [ Attributes.class "my-8"
             ]
+            [ Html.text "You should add some Todos!"
+            ]
+
+    else
+        column
+            |> List.map
+                (\id ->
+                    ( idToString id, Html.viewMaybe (viewTodo title) (Dict.get (idToString id) todos) )
+                )
+            |> Keyed.node "div"
+                [ Attributes.class "py-4"
+                ]
 
 
 viewTodo : Status -> Todo -> Html Msg
