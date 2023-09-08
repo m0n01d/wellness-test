@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <!-- keep the build simple -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="main.js"></script>
+
+    <style>
+      /* you can style your program here */
+    </style>
+  </head>
+  <body>
+    <main></main>
+    <script>
+      var app = Elm.Main.init({ node: document.querySelector("main") });
+      // Stolen boilerplate from Ellie..
+      // you can use ports and stuff here
+
+      window.addEventListener("click", function (e) {
+        if (e.target.attributes.getNamedItem("ui-button-toggle")) {
+          // @TODO UX improvement
+          // Clicking off the menu would also close the panel
+          return e.target.nextSibling.classList.toggle("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>
